@@ -1,2 +1,1 @@
-# MakeMyCV
-An application to create your CV.
+An applicatoin to build your CV.
