@@ -14,7 +14,7 @@ export default function Header() {
       }}
     >
       <div className="header-text">
-        <h2 style={{ color: '#FFFFFF' }}>CV Builder</h2>
+        <h2 style={{ color: '#FFFFFF' }}>MakeMyCv</h2>
         <p style={{ color: '#a3a3a3' }}> Build your professional story</p>
       </div>
       <div className="header-buttons" style={{ display: 'flex', gap: '1.5rem' }}>
