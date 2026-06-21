@@ -1,6 +1,6 @@
 import PrinterLogo from '../assets/printer.svg';
 import DownloadLogo from '../assets/download.svg';
-import '../App.css';
+import '../styles/App.css';
 
 export default function Header() {
   return (
