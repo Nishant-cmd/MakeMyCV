@@ -1,0 +1,131 @@
+:root {
+    --ink-black: #1a1a1a;
+    --charcoal: #2d2d2d;
+    --warm-white: #fafaf9;
+    --off-white: #f5f5f4;
+    --cream: #fefce8;
+    --accent-coral: #ff6b6b;
+    --accent-sage: #86a597;
+    --accent-gold: #d4a574;
+    --accent-navy: #1e3a5f;
+    --text-primary: #1a1a1a;
+    --text-secondary: #525252;
+    --text-muted: #a3a3a3;
+    --border-light: #e7e5e4;
+    --border-medium: #d6d3d1;
+    --shadow-subtle: 0 1px 3px #0000000d;
+    --shadow-medium: 0 4px 6px #00000012;
+    --shadow-large: 0 10px 25px #0003;
+    --transition-smooth: all .3s cubic-bezier(.4, 0, .2, 1);
+}
+
+main {
+    padding: 2rem;
+}
+
+p {
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.form-collapsed {
+    border: 1px solid var(--border-light);
+    transition: var(--transition-smooth);
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.action_handler {
+    cursor: pointer;
+    width: 100%;
+    transition: var(--transition-smooth);
+    background: #fff;
+    border: none;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.action_handler>div {
+    display: flex;
+    gap: 1rem;
+    align-items: end;
+    font-weight: bold;
+}
+
+.form-hidden {
+    display: none;
+}
+
+.form-show {
+    display: block;
+    background: #fff;
+    animation: .3s slideDown;
+}
+
+
+@keyframes slideDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.chevron {
+    transition: transform .3s;
+}
+
+.chevron-rotate {
+    transform: rotate(180deg);
+}
+
+fieldset {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    border: none;
+}
+
+fieldset>div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+fieldset>div>div {
+    display: flex;
+    flex-direction: column;
+}
+
+.person-details {
+    display: flex;
+    flex-direction: row;
+}
+
+input,
+textarea {
+    width: 100%;
+    color: #1a1a1a;
+    font-size: 0.9375rem;
+    border: 1px solid var(--border-light);
+    transition: var(--transition-smooth);
+    background: rgb(255, 255, 255);
+    border-radius: 6px;
+    padding: 0.75rem;
+}
+
+input:focus,
+textarea:focus {
+    box-shadow: rgba(255, 107, 107, 0.1) 0px 0px 0px 3px;
+    border-color: var(--accent-coral);
+    outline: none;
+}
