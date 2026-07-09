@@ -71,7 +71,7 @@ export default function Personal_Information() {
           </div>
 
           <div className="person-summary">
-            <label htmlFor="summary">Portfolio / Website</label>
+            <label htmlFor="summary">Professional Summary</label>
             <textarea
               id="summary"
               name="career_summary"
