@@ -61,9 +61,10 @@ p {
 }
 
 .form-show {
-    display: block;
+    display: flex;
     background: #fff;
     animation: .3s slideDown;
+    flex-direction: column;
 }
 
 
@@ -88,27 +89,84 @@ p {
     transform: rotate(180deg);
 }
 
-fieldset {
+.personal-info-fieldset,
+.experience-info-fieldset {
     display: flex;
     flex-direction: column;
     gap: 1rem;
     border: none;
 }
 
-fieldset>div {
+.experience-info {
+    background-color: var(--warm-white);
+    padding: 1rem;
+    margin: 0.5rem;
+    border: 1px dashed var(--border-medium);
+    border-radius: 8px;
+}
+
+.personal-info-fieldset>div {
     display: flex;
     flex-direction: column;
     gap: 0.4rem;
 }
 
-fieldset>div>div {
+.personal-info-fieldset>div>div {
     display: flex;
     flex-direction: column;
 }
 
-.person-details {
+#person-details,
+#experience-details {
     display: flex;
     flex-direction: row;
+}
+
+#experience-details {
+    gap: 1rem;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+}
+
+#checkbox-div {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+}
+
+.add-item-button,
+.remove-btn {
+    color: var(--text-secondary);
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    font-family: "DM Sans", sans-serif;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    display: flex;
+    border: 2px dashed var(--border-medium);
+    transition: var(--transition-smooth);
+    background: rgb(255, 255, 255);
+    border-radius: 8px;
+    gap: 0.5rem;
+    padding: 0.875rem;
+    margin: 0rem 1rem 1rem 1rem;
+}
+
+.remove-btn {
+    border: 2px solid var(--border-medium);
+    margin: 0;
+    padding: 0.5rem;
+}
+
+.add-item-button:hover,
+.remove-btn:hover {
+    color: var(--accent-coral);
+    border-color: var(--accent-coral);
+    background: rgba(255, 107, 107, 0.05);
 }
 
 input,
@@ -128,4 +186,9 @@ textarea:focus {
     box-shadow: rgba(255, 107, 107, 0.1) 0px 0px 0px 3px;
     border-color: var(--accent-coral);
     outline: none;
+}
+
+input[type='checkbox'] {
+    width: 1.3em;
+    box-shadow: none;
 }

@@ -30,7 +30,7 @@ export default function Personal_Information() {
       </button>
 
       <form id="person-information-form" className={isVisible ? 'form-show' : 'form-hidden'}>
-        <fieldset>
+        <fieldset className="personal-info-fieldset">
           <div className="person-name">
             <label htmlFor="name">Full Name </label>
             <input name="user_name" id="name" placeholder="John Doe" required />
@@ -39,7 +39,7 @@ export default function Personal_Information() {
             <label htmlFor="title">Professional Title </label>
             <input name="user_title" id="title" placeholder="Senior Software Engineer" required />
           </div>
-          <div className="person-details">
+          <div id="person-details">
             <div>
               <label htmlFor="email">Email </label>
               <input
@@ -71,7 +71,7 @@ export default function Personal_Information() {
           </div>
 
           <div className="person-summary">
-            <label htmlFor="summary">Professional Summary</label>
+            <label htmlFor="summary">Portfolio / Website</label>
             <textarea
               id="summary"
               name="career_summary"
