@@ -6,7 +6,7 @@ import Work_Experience from './work_experience';
 
 export default function Details() {
   return (
-    <main>
+    <main style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
       <p>Start filling up your information !</p>
       <Personal_Information />
       <Work_Experience />

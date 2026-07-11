@@ -26,8 +26,8 @@ export default function Education() {
         }}
       >
         <div>
-          <img src={EducationLogo} alt="A logo that symbolize work" />
-          <span>Work Experience</span>
+          <img src={EducationLogo} alt="A logo that symbolize Education" />
+          <span>Education</span>
         </div>
         <svg
           className={isVisible ? 'chevron-rotate' : 'chevron'}
@@ -44,7 +44,7 @@ export default function Education() {
 
       <div id="experience-info-form" className={isVisible ? 'form-show' : 'form-hidden'}>
         {items.map((item, index) => (
-          <Experience_List
+          <Education_List
             key={item.id}
             id={item.id}
             itempos={index}
@@ -59,19 +59,20 @@ export default function Education() {
             handleItem();
           }}
         >
-          Add Experience
+          Add Education
         </button>
       </div>
     </div>
   );
 }
 
-function Experience_List({ id, itempos, onDelete, showDeleteBtn }) {
+function Education_List({ id, itempos, onDelete, showDeleteBtn }) {
+  const [currentlyStudying, setCurrentlyStudying] = useState(false);
   return (
-    <form className="experience-info">
-      <fieldset className="experience-info-fieldset">
+    <form className="education-info">
+      <fieldset className="education-info-fieldset">
         <div className="header">
-          <legend>{'Experience ' + '#' + (itempos + 1)}</legend>
+          <legend>{'Education ' + '#' + (itempos + 1)}</legend>
           {showDeleteBtn ? (
             <button
               type="button"
@@ -87,39 +88,35 @@ function Experience_List({ id, itempos, onDelete, showDeleteBtn }) {
             <span></span>
           )}
         </div>
-        <div id="experience-details">
+        <div id="education-details">
           <div>
-            <label htmlFor="company_name">Company </label>
-            <input
-              name="user_company"
-              id="company_name"
-              type="text"
-              placeholder="Microsoft"
-              required
-            />
-            <label htmlFor="position">Position </label>
-            <input name="user_position" id="position" placeholder="HR Manager" />
+            <label htmlFor="institution_name">Institution Name</label>
+            <input id="institution_name" type="text" placeholder="University Of Chicago" required />
           </div>
+
           <div>
-            <label htmlFor="job-start">Start Date </label>
-            <input name="user-job-start" id="job-start" type="date" />
-            <label htmlFor="job-end">End Date </label>
-            <input name="user-job-end" id="job-end" type="date" />
+            <label htmlFor="degree">Degree</label>
+            <input id="degree" placeholder="Bachelors in Computer Science" />
           </div>
-        </div>
-        <div className="experience-description">
-          <label htmlFor="experience">Description</label>
-          <textarea
-            id="experience"
-            name="experience_summary"
-            rows="5"
-            cols="50"
-            placeholder="A brief description about yourself when you were working at these companies"
-          ></textarea>
+
+          <div>
+            <label htmlFor="education-start">Start Date</label>
+            <input id="education-start" type="date" />
+          </div>
+
+          <div>
+            <label htmlFor="education-end">End Date</label>
+            <input id="education-end" type="date" disabled={currentlyStudying} />
+          </div>
         </div>
         <div id="checkbox-div">
-          <input type="checkbox" id="work-status" name="user-work-status" />
-          <label htmlFor="work-status">I currently work here</label>
+          <input
+            type="checkbox"
+            id="education-status"
+            name="user-education-status"
+            onChange={(e) => setCurrentlyStudying(e.target.checked)}
+          />
+          <label htmlFor="education-status">I currently study here</label>
         </div>
       </fieldset>
     </form>

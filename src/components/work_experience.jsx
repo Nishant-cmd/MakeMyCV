@@ -67,6 +67,7 @@ export default function Work_Experience() {
 }
 
 function Experience_List({ id, itempos, onDelete, showDeleteBtn }) {
+  const [currentlyWorking, setCurrentlyWorking] = useState(false);
   return (
     <form className="experience-info">
       <fieldset className="experience-info-fieldset">
@@ -89,22 +90,22 @@ function Experience_List({ id, itempos, onDelete, showDeleteBtn }) {
         </div>
         <div id="experience-details">
           <div>
-            <label htmlFor="company_name">Company </label>
-            <input
-              name="user_company"
-              id="company_name"
-              type="text"
-              placeholder="Microsoft"
-              required
-            />
-            <label htmlFor="position">Position </label>
-            <input name="user_position" id="position" placeholder="HR Manager" />
+            <label htmlFor="company_name">Company</label>
+            <input id="company_name" type="text" placeholder="Microsoft" required />
+          </div>
+
+          <div>
+            <label htmlFor="position">Position</label>
+            <input id="position" placeholder="HR Manager" />
+          </div>
+
+          <div>
+            <label htmlFor="job-start">Start Date</label>
+            <input id="job-start" type="date" />
           </div>
           <div>
-            <label htmlFor="job-start">Start Date </label>
-            <input name="user-job-start" id="job-start" type="date" />
-            <label htmlFor="job-end">End Date </label>
-            <input name="user-job-end" id="job-end" type="date" />
+            <label htmlFor="job-end">End Date</label>
+            <input id="job-end" type="date" disabled={currentlyWorking} />
           </div>
         </div>
         <div className="experience-description">
@@ -118,7 +119,11 @@ function Experience_List({ id, itempos, onDelete, showDeleteBtn }) {
           ></textarea>
         </div>
         <div id="checkbox-div">
-          <input type="checkbox" id="work-status" name="user-work-status" />
+          <input
+            type="checkbox"
+            id="work-status"
+            onChange={(e) => setCurrentlyWorking(e.target.checked)}
+          />
           <label htmlFor="work-status">I currently work here</label>
         </div>
       </fieldset>
