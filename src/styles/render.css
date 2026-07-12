@@ -1,0 +1,22 @@
+.cv-page {
+    min-height: 100%;
+    background: #fff;
+    box-shadow: 0 10px 40px #00000026;
+    padding: 0px;
+}
+
+.cv-header {
+    background: linear-gradient(135deg, #1a1a1a, 0%, #2d2d2d 100%);
+    color: #fff;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-info>span {
+    flex: 1 1 200px;
+    display: flex;
+    gap: 0.2rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.875rem;
+}

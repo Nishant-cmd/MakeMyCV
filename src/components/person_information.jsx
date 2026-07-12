@@ -2,7 +2,7 @@ import { useState } from 'react';
 import PersonLogo from '../assets/person.svg';
 import '../styles/form.css';
 
-export default function Personal_Information() {
+export default function Personal_Information({ onChange, personalInfo }) {
   const [isVisible, setIsVisible] = useState(false);
   return (
     <div className="form-collapsed">
@@ -33,11 +33,25 @@ export default function Personal_Information() {
         <fieldset className="personal-info-fieldset">
           <div className="person-name">
             <label htmlFor="name">Full Name </label>
-            <input name="user_name" id="name" placeholder="John Doe" required />
+            <input
+              name="user_name"
+              id="name"
+              placeholder="John Doe"
+              required
+              value={personalInfo?.user_name || ''}
+              onChange={onChange}
+            />
           </div>
           <div className="person-position">
             <label htmlFor="title">Professional Title </label>
-            <input name="user_title" id="title" placeholder="Senior Software Engineer" required />
+            <input
+              name="user_title"
+              id="title"
+              placeholder="Senior Software Engineer"
+              required
+              value={personalInfo?.user_title || ''}
+              onChange={onChange}
+            />
           </div>
           <div id="person-details">
             <div>
@@ -48,9 +62,17 @@ export default function Personal_Information() {
                 type="email"
                 placeholder="johndoe@example.com"
                 required
+                value={personalInfo?.user_email || ''}
+                onChange={onChange}
               />
               <label htmlFor="phone">Phone </label>
-              <input name="user_number" id="phone" placeholder="+1(555) 123-4567" />
+              <input
+                name="user_number"
+                id="phone"
+                placeholder="+1(555) 123-4567"
+                value={personalInfo?.user_number || ''}
+                onChange={onChange}
+              />
             </div>
             <div>
               <label htmlFor="location">Location </label>
@@ -59,25 +81,41 @@ export default function Personal_Information() {
                 id="location"
                 type="text"
                 placeholder="San Francisco, CA"
+                value={personalInfo?.user_location || ''}
+                onChange={onChange}
               />
               <label htmlFor="linkedin">Linkedin </label>
-              <input name="user_linkedin" id="linkedin" placeholder="linkedin.com/in/john" />
+              <input
+                name="user_linkedin"
+                id="linkedin"
+                placeholder="linkedin.com/in/john"
+                value={personalInfo?.user_linkedin || ''}
+                onChange={onChange}
+              />
             </div>
           </div>
 
           <div className="person-website">
             <label htmlFor="website">Portfolio / Website</label>
-            <input name="user_website" id="website" placeholder="https://johndoe.com" />
+            <input
+              name="user_website"
+              id="website"
+              placeholder="https://johndoe.com"
+              value={personalInfo?.user_website || ''}
+              onChange={onChange}
+            />
           </div>
 
           <div className="person-summary">
-            <label htmlFor="summary">Portfolio / Website</label>
+            <label htmlFor="summary">Career Summary</label>
             <textarea
               id="summary"
               name="career_summary"
               rows="5"
               cols="50"
               placeholder="A brief overview of your professional background.."
+              value={personalInfo?.career_summary || ''}
+              onChange={onChange}
             ></textarea>
           </div>
         </fieldset>
