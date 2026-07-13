@@ -5,11 +5,12 @@ import Location from '../assets/location.svg';
 import Link from '../assets/link.svg';
 import Phone from '../assets/phone.svg';
 
-export default function Render({ personalInfo }) {
+export default function Render({ personalInfo, workInfo }) {
   return (
     <section style={{ width: '100%', padding: '1.5rem' }}>
       <main className="cv-page">
         <Personal_Information_Display personalInfo={personalInfo} />
+        <Work_Experience_Display workInfo={workInfo} />
       </main>
     </section>
   );
@@ -64,7 +65,7 @@ function Personal_Information_Display({ personalInfo }) {
         </div>
       </header>
 
-      <div style={{ padding: '2rem' }}>
+      <div style={{ padding: '2rem 2rem 0rem 2rem' }}>
         {personalInfo?.career_summary && (
           <>
             <h4>Personal Summary</h4>
@@ -79,4 +80,8 @@ function Personal_Information_Display({ personalInfo }) {
       </div>
     </>
   );
+}
+
+function Work_Experience_Display({ workInfo }) {
+  return <></>;
 }

@@ -4,12 +4,17 @@ import Project from './projects';
 import Skill from './skills';
 import Work_Experience from './work_experience';
 
-export default function Details({ onChange, personalInfo }) {
+export default function Details({
+  onChangePersonalInfo,
+  personalInfo,
+  onChangeWorkInfo,
+  workInfo,
+}) {
   return (
     <main style={{ display: 'flex', flexDirection: 'column', gap: '1rem', minWidth: '40%' }}>
       <p>Start filling up your information !</p>
-      <Personal_Information onChange={onChange} personalInfo={personalInfo} />
-      <Work_Experience />
+      <Personal_Information onChange={onChangePersonalInfo} personalInfo={personalInfo} />
+      <Work_Experience onChange={onChangeWorkInfo} workInfo={workInfo} />
       <Education />
       <Skill />
       <Project />

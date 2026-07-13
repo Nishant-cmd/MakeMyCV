@@ -2,7 +2,7 @@ import { useState } from 'react';
 import WorkLogo from '../assets/work.svg';
 import Deletebtn from '../assets/delete-btn.svg';
 
-export default function Work_Experience() {
+export default function Work_Experience({ onChange, workInfo }) {
   const [isVisible, setIsVisible] = useState(false);
   const [items, addItems] = useState([{ id: crypto.randomUUID() }]);
 
@@ -13,7 +13,6 @@ export default function Work_Experience() {
 
   const handleItem = () => {
     const newItem = [...items, { id: crypto.randomUUID() }];
-    console.log(newItem);
     addItems(newItem);
   };
 
@@ -50,6 +49,8 @@ export default function Work_Experience() {
             itempos={index}
             onDelete={deleteItem}
             showDeleteBtn={index === 0 ? false : true}
+            onChange={onChange}
+            workInfo={workInfo.find((experience) => experience.user_id === item.id)}
           />
         ))}
         <button
@@ -66,7 +67,7 @@ export default function Work_Experience() {
   );
 }
 
-function Experience_List({ id, itempos, onDelete, showDeleteBtn }) {
+function Experience_List({ id, itempos, onDelete, showDeleteBtn, onChange, workInfo }) {
   const [currentlyWorking, setCurrentlyWorking] = useState(false);
   return (
     <form className="experience-info">
@@ -91,38 +92,69 @@ function Experience_List({ id, itempos, onDelete, showDeleteBtn }) {
         <div id="experience-details">
           <div>
             <label htmlFor="company_name">Company</label>
-            <input id="company_name" type="text" placeholder="Microsoft" required />
+            <input
+              name="user_company"
+              id={id}
+              type="text"
+              placeholder="Microsoft"
+              required
+              value={workInfo?.user_company}
+              onChange={onChange}
+            />
           </div>
 
           <div>
             <label htmlFor="position">Position</label>
-            <input id="position" placeholder="HR Manager" />
+            <input
+              name="user_position"
+              id={id}
+              placeholder="HR Manager"
+              value={workInfo?.user_position}
+              onChange={onChange}
+            />
           </div>
 
           <div>
             <label htmlFor="job-start">Start Date</label>
-            <input id="job-start" type="date" />
+            <input
+              name="user_job_start"
+              id={id}
+              type="date"
+              value={workInfo?.user_job_start}
+              onChange={onChange}
+            />
           </div>
           <div>
             <label htmlFor="job-end">End Date</label>
-            <input id="job-end" type="date" disabled={currentlyWorking} />
+            <input
+              name="user_job_end"
+              id={id}
+              type="date"
+              disabled={currentlyWorking}
+              value={workInfo?.user_job_end}
+              onChange={onChange}
+            />
           </div>
         </div>
         <div className="experience-description">
           <label htmlFor="experience">Description</label>
           <textarea
-            id="experience"
+            id={id}
             name="experience_summary"
             rows="5"
             cols="50"
             placeholder="A brief description about yourself when you were working at these companies"
+            value={workInfo?.experience_summary}
+            onChange={onChange}
           ></textarea>
         </div>
         <div id="checkbox-div">
           <input
+            name="user_work_status"
             type="checkbox"
-            id="work-status"
+            id={id}
             onChange={(e) => setCurrentlyWorking(e.target.checked)}
+            value={workInfo?.user_work_status}
           />
           <label htmlFor="work-status">I currently work here</label>
         </div>
