@@ -1,9 +1,9 @@
-import '../styles/render.css';
-import Mail from '../assets/mail.svg';
-import Linkedin from '../assets/linkedin.svg';
-import Location from '../assets/location.svg';
-import Link from '../assets/link.svg';
-import Phone from '../assets/phone.svg';
+import '../../styles/render.css';
+import Mail from '../../assets/mail.svg';
+import Linkedin from '../../assets/linkedin.svg';
+import Location from '../../assets/location.svg';
+import Link from '../../assets/link.svg';
+import Phone from '../../assets/phone.svg';
 
 export default function Render({ personalInfo, workInfo }) {
   return (

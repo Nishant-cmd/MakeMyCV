@@ -1,6 +1,6 @@
-import Header from './components/header';
-import Details from './components/details';
-import Render from './components/cv-render';
+import Header from './components/layout/header';
+import Details from './components/forms/details';
+import Render from './components/preview/cv-render';
 import { useState } from 'react';
 
 function App() {

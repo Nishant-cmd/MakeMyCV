@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import WorkLogo from '../assets/work.svg';
-import Deletebtn from '../assets/delete-btn.svg';
+import WorkLogo from '../../assets/work.svg';
+import Deletebtn from '../../assets/delete-btn.svg';
 
 export default function Work_Experience({ onChange, workInfo }) {
   const [isVisible, setIsVisible] = useState(false);

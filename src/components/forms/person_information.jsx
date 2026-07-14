@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import PersonLogo from '../assets/person.svg';
-import '../styles/form.css';
+import PersonLogo from '../../assets/person.svg';
+import '../../styles/form.css';
 
 export default function Personal_Information({ onChange, personalInfo }) {
   const [isVisible, setIsVisible] = useState(false);

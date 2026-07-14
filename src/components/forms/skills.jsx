@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import SkillLogo from '../assets/skills.svg';
+import SkillLogo from '../../assets/skills.svg';
 
 export default function Skill() {
   const [isVisible, setIsVisible] = useState(false);
