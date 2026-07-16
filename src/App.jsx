@@ -35,6 +35,11 @@ function App() {
     }));
   };
 
+  const deleteWorkExperience = (id) => {
+    const remainingExperience = workInfo.filter((experience) => experience.user_id !== id);
+    setWorkInfo(remainingExperience);
+  };
+
   const handleWorkInfoChange = (e) => {
     const { id: experienceId, name, value, type, checked } = e.target;
 
@@ -77,6 +82,7 @@ function App() {
           personalInfo={personalInfo}
           onChangeWorkInfo={handleWorkInfoChange}
           workInfo={workInfo}
+          onDelete={deleteWorkExperience}
         />
         <Render personalInfo={personalInfo} workInfo={workInfo} />
       </div>

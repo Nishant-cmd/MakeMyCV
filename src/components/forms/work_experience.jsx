@@ -2,7 +2,7 @@ import { useState } from 'react';
 import WorkLogo from '../../assets/work.svg';
 import Deletebtn from '../../assets/delete-btn.svg';
 
-export default function Work_Experience({ onChange, workInfo }) {
+export default function Work_Experience({ onChange, workInfo, onDelete }) {
   const [isVisible, setIsVisible] = useState(false);
   const [items, addItems] = useState([{ id: crypto.randomUUID() }]);
 
@@ -48,9 +48,9 @@ export default function Work_Experience({ onChange, workInfo }) {
             id={item.id}
             itempos={index}
             onDelete={deleteItem}
-            showDeleteBtn={index === 0 ? false : true}
             onChange={onChange}
             workInfo={workInfo.find((experience) => experience.user_id === item.id)}
+            onDeleteExpereince={onDelete}
           />
         ))}
         <button
@@ -67,27 +67,24 @@ export default function Work_Experience({ onChange, workInfo }) {
   );
 }
 
-function Experience_List({ id, itempos, onDelete, showDeleteBtn, onChange, workInfo }) {
+function Experience_List({ id, itempos, onDelete, onChange, workInfo, onDeleteExpereince }) {
   const [currentlyWorking, setCurrentlyWorking] = useState(false);
   return (
     <form className="experience-info">
       <fieldset className="experience-info-fieldset">
         <div className="header">
           <legend>{'Experience ' + '#' + (itempos + 1)}</legend>
-          {showDeleteBtn ? (
-            <button
-              type="button"
-              className="remove-btn"
-              onClick={() => {
-                onDelete(id);
-              }}
-            >
-              <img src={Deletebtn} alt="delete-btn" />
-              <span>remove</span>
-            </button>
-          ) : (
-            <span></span>
-          )}
+          <button
+            type="button"
+            className="remove-btn"
+            onClick={() => {
+              onDelete(id);
+              onDeleteExpereince(id);
+            }}
+          >
+            <img src={Deletebtn} alt="delete-btn" />
+            <span>remove</span>
+          </button>
         </div>
         <div id="experience-details">
           <div>

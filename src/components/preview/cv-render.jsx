@@ -4,6 +4,7 @@ import Linkedin from '../../assets/linkedin.svg';
 import Location from '../../assets/location.svg';
 import Link from '../../assets/link.svg';
 import Phone from '../../assets/phone.svg';
+import { format } from '../../../node_modules/date-fns';
 
 export default function Render({ personalInfo, workInfo }) {
   return (
@@ -83,5 +84,55 @@ function Personal_Information_Display({ personalInfo }) {
 }
 
 function Work_Experience_Display({ workInfo }) {
-  return <></>;
+  const experience = workInfo.map((workExperience) => {
+    console.log(workExperience.user_work_status);
+    const start_date = workExperience.user_job_start
+      ? format(workExperience.user_job_start, 'MMMM yyyy')
+      : '';
+
+    const end_date = workExperience.user_work_status
+      ? 'Present'
+      : workExperience.user_job_end
+        ? format(workExperience.user_job_end, 'MMMM yyyy')
+        : '';
+
+    return (
+      <div key={workExperience.user_id} style={{ marginBottom: '2rem' }}>
+        <ul
+          style={{
+            padding: '0px',
+            display: 'flex',
+            justifyContent: 'space-between',
+            fontSize: '0.8rem',
+            fontWeight: '600',
+          }}
+        >
+          <li>{workExperience.user_position || 'Position'}</li>
+          {workExperience?.user_job_start && (
+            <span>
+              {start_date} - {end_date}
+            </span>
+          )}
+        </ul>
+        <p style={{ marginTop: '0.5rem', color: '#525252', fontSize: '0.8rem', lineHeight: '1.8' }}>
+          {workExperience?.user_company || 'Company'}
+        </p>
+        <p style={{ color: '#525252', fontSize: '0.8rem', lineHeight: '1.8' }}>
+          {workExperience?.experience_summary}
+        </p>
+      </div>
+    );
+  });
+
+  return (
+    <div style={{ padding: '1.5rem 2rem 0rem 2rem' }}>
+      {workInfo[0]?.user_id && (
+        <>
+          <h4>Work Experience</h4>
+          <hr />
+        </>
+      )}
+      {experience}
+    </div>
+  );
 }
