@@ -22,7 +22,7 @@ function App() {
     user_job_start: '',
     user_job_end: '',
     experience_summary: '',
-    user_work_status: '',
+    user_work_status: false,
   };
 
   const [workInfo, setWorkInfo] = useState([]);
@@ -36,7 +36,7 @@ function App() {
   };
 
   const handleWorkInfoChange = (e) => {
-    const { id: experienceId, name, value } = e.target;
+    const { id: experienceId, name, value, type, checked } = e.target;
 
     const experienceExists = workInfo.some((experience) => experience.user_id === experienceId);
 
@@ -46,7 +46,7 @@ function App() {
           experience.user_id === experienceId
             ? {
                 ...experience,
-                [name]: value,
+                [name]: type === 'checkbox' ? checked : value,
               }
             : experience,
         ),
@@ -57,7 +57,7 @@ function App() {
         {
           ...work_experience,
           user_id: experienceId,
-          [name]: value,
+          [name]: type === 'checkbox' ? checked : value,
         },
       ]);
     }

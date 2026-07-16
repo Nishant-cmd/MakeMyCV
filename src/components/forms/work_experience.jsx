@@ -153,8 +153,11 @@ function Experience_List({ id, itempos, onDelete, showDeleteBtn, onChange, workI
             name="user_work_status"
             type="checkbox"
             id={id}
-            onChange={(e) => setCurrentlyWorking(e.target.checked)}
-            value={workInfo?.user_work_status}
+            onChange={(e) => {
+              setCurrentlyWorking(e.target.checked);
+              onChange(e);
+            }}
+            checked={workInfo?.user_work_status}
           />
           <label htmlFor="work-status">I currently work here</label>
         </div>
