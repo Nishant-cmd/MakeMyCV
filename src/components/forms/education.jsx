@@ -2,7 +2,7 @@ import { useState } from 'react';
 import EducationLogo from '../../assets/education.svg';
 import Deletebtn from '../../assets/delete-btn.svg';
 
-export default function Education() {
+export default function Education({ educationInfo, onChange, onDelete }) {
   const [isVisible, setIsVisible] = useState(false);
   const [items, addItems] = useState([{ id: crypto.randomUUID() }]);
 
@@ -13,7 +13,6 @@ export default function Education() {
 
   const handleItem = () => {
     const newItem = [...items, { id: crypto.randomUUID() }];
-    console.log(newItem);
     addItems(newItem);
   };
 
@@ -49,7 +48,9 @@ export default function Education() {
             id={item.id}
             itempos={index}
             onDelete={deleteItem}
-            showDeleteBtn={index === 0 ? false : true}
+            eudcationInfo={educationInfo}
+            onChange={onChange}
+            onDeleteEducation={onDelete}
           />
         ))}
         <button
@@ -66,55 +67,83 @@ export default function Education() {
   );
 }
 
-function Education_List({ id, itempos, onDelete, showDeleteBtn }) {
+function Education_List({ id, itempos, onDelete, educationInfo, onChange, onDeleteEducation }) {
   const [currentlyStudying, setCurrentlyStudying] = useState(false);
   return (
     <form className="education-info">
       <fieldset className="education-info-fieldset">
         <div className="header">
           <legend>{'Education ' + '#' + (itempos + 1)}</legend>
-          {showDeleteBtn ? (
-            <button
-              type="button"
-              className="remove-btn"
-              onClick={() => {
-                onDelete(id);
-              }}
-            >
-              <img src={Deletebtn} alt="delete-btn" />
-              <span>remove</span>
-            </button>
-          ) : (
-            <span></span>
-          )}
+          <button
+            type="button"
+            className="remove-btn"
+            onClick={() => {
+              onDelete(id);
+              onDeleteEducation(id);
+            }}
+          >
+            <img src={Deletebtn} alt="delete-btn" />
+            <span>remove</span>
+          </button>
         </div>
         <div id="education-details">
           <div>
             <label htmlFor="institution_name">Institution Name</label>
-            <input id="institution_name" type="text" placeholder="University Of Chicago" required />
+            <input
+              name="user_college"
+              id={id}
+              type="text"
+              placeholder="University Of Chicago"
+              value={educationInfo?.user_college}
+              onChange={onChange}
+              required
+            />
           </div>
 
           <div>
             <label htmlFor="degree">Degree</label>
-            <input id="degree" placeholder="Bachelors in Computer Science" />
+            <input
+              name="user_degree"
+              id={id}
+              placeholder="Bachelors in Computer Science"
+              value={educationInfo?.user_degree}
+              onChange={onChange}
+            />
           </div>
 
           <div>
             <label htmlFor="education-start">Start Date</label>
-            <input id="education-start" type="date" />
+            <input
+              name="user_education_start"
+              id={id}
+              type="date"
+              value={educationInfo?.user_education_start}
+              onChange={onChange}
+            />
           </div>
 
           <div>
             <label htmlFor="education-end">End Date</label>
-            <input id="education-end" type="date" disabled={currentlyStudying} />
+            <input
+              name="user_education_end"
+              id={id}
+              type="date"
+              disabled={currentlyStudying}
+              value={educationInfo?.user_education_end}
+              onChange={onChange}
+            />
           </div>
         </div>
         <div id="checkbox-div">
           <input
+            name="user_education_status"
             type="checkbox"
-            id="education-status"
-            name="user-education-status"
-            onChange={(e) => setCurrentlyStudying(e.target.checked)}
+            id={id}
+            onChange={(e) => {
+              setCurrentlyStudying(e.target.checked);
+              onchange(e);
+            }}
+            checked={educationInfo?.user_education_status}
           />
           <label htmlFor="education-status">I currently study here</label>
         </div>

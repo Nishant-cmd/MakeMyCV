@@ -9,14 +9,25 @@ export default function Details({
   personalInfo,
   onChangeWorkInfo,
   workInfo,
-  onDelete,
+  onDeleteExperience,
+  educationInfo,
+  onDeleteEducation,
+  onChangeEducationInfo,
 }) {
   return (
     <main style={{ display: 'flex', flexDirection: 'column', gap: '1rem', minWidth: '40%' }}>
       <p>Start filling up your information !</p>
       <Personal_Information onChange={onChangePersonalInfo} personalInfo={personalInfo} />
-      <Work_Experience onChange={onChangeWorkInfo} workInfo={workInfo} onDelete={onDelete} />
-      <Education />
+      <Work_Experience
+        onChange={onChangeWorkInfo}
+        workInfo={workInfo}
+        onDelete={onDeleteExperience}
+      />
+      <Education
+        onChange={onChangeEducationInfo}
+        educationInfo={educationInfo}
+        onDelete={onDeleteEducation}
+      />
       <Skill />
       <Project />
     </main>
