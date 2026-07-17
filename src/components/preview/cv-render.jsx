@@ -6,13 +6,14 @@ import Link from '../../assets/link.svg';
 import Phone from '../../assets/phone.svg';
 import { format } from '../../../node_modules/date-fns';
 
-export default function Render({ personalInfo, workInfo, educationInfo }) {
+export default function Render({ personalInfo, workInfo, educationInfo, skillInfo }) {
   return (
     <section style={{ width: '100%', padding: '1.5rem' }}>
       <main className="cv-page">
         <Personal_Information_Display personalInfo={personalInfo} />
         <Work_Experience_Display workInfo={workInfo} />
         <Education_Display educationInfo={educationInfo} />
+        <Skill_Display skillInfo={skillInfo} />
       </main>
     </section>
   );
@@ -126,7 +127,7 @@ function Work_Experience_Display({ workInfo }) {
   });
 
   return (
-    <div style={{ padding: '1.5rem 2rem 0rem 2rem' }}>
+    <div style={{ padding: '0.5rem 2rem 0rem 2rem' }}>
       {workInfo[0]?.user_id && (
         <>
           <h4>Work Experience</h4>
@@ -176,7 +177,7 @@ function Education_Display({ educationInfo }) {
   });
 
   return (
-    <div style={{ padding: '1.5rem 2rem 0rem 2rem' }}>
+    <div style={{ padding: '0.5rem 2rem 0rem 2rem' }}>
       {educationInfo[0]?.user_id && (
         <>
           <h4>Education</h4>
@@ -184,6 +185,37 @@ function Education_Display({ educationInfo }) {
         </>
       )}
       {education}
+    </div>
+  );
+}
+
+function Skill_Display({ skillInfo }) {
+  const skillList = skillInfo.map((skill) => (
+    <div
+      key={skill.id}
+      style={{
+        color: ' var(--text-primary)',
+        fontSize: ' 0.7rem',
+        fontWeight: '500',
+        background: ' var(--cream)',
+        border: '1px solid var(--accent-gold)',
+        borderRadius: '20px',
+        padding: '0.5rem 1rem',
+      }}
+    >
+      {skill.skill}
+    </div>
+  ));
+  return (
+    <div style={{ padding: '0.5rem 2rem 0rem 2rem' }}>
+      {skillInfo[0]?.id && (
+        <>
+          <h4>Skills</h4>
+          <hr />
+        </>
+      )}
+
+      <div style={{ display: 'flex', gap: '.5rem' }}>{skillList}</div>
     </div>
   );
 }

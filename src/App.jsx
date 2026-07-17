@@ -112,6 +112,10 @@ function App() {
     }
   };
 
+  const handleSkill = (skill) => {
+    setSkill(skill);
+  };
+
   return (
     <>
       <Header />
@@ -130,8 +134,14 @@ function App() {
           educationInfo={educationInfo}
           onDeleteEducation={deleteEductionInfo}
           onChangeEducationInfo={handleEducationInfoChange}
+          onSkillChange={handleSkill}
         />
-        <Render personalInfo={personalInfo} workInfo={workInfo} educationInfo={educationInfo} />
+        <Render
+          personalInfo={personalInfo}
+          workInfo={workInfo}
+          educationInfo={educationInfo}
+          skillInfo={skillInfo}
+        />
       </div>
     </>
   );

@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import SkillLogo from '../../assets/skills.svg';
 
-export default function Skill() {
+export default function Skill({ onChange }) {
   const [isVisible, setIsVisible] = useState(false);
   const [items, addItems] = useState([]);
 
   const deleteItem = (id) => {
     const newList = items.filter((item) => item.id !== id);
     addItems(newList);
+    onChange(newList);
   };
 
   const handleSubmit = (e) => {
@@ -21,6 +22,7 @@ export default function Skill() {
     };
 
     addItems([...items, newItem]);
+    onChange([...items, newItem]);
 
     e.target.reset();
   };
