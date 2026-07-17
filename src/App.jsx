@@ -34,7 +34,7 @@ function App() {
     user_degree: '',
     user_education_start: '',
     user_education_end: '',
-    user_education_status: '',
+    user_education_status: false,
   };
 
   const handlePersonalInfoChange = (e) => {
@@ -103,7 +103,7 @@ function App() {
       setEducationInfo((prevEducationInfo) => [
         ...prevEducationInfo,
         {
-          ...educationInfo,
+          ...education_details,
           user_id: educationId,
           [name]: type === 'checkbox' ? checked : value,
         },

@@ -141,7 +141,7 @@ function Education_List({ id, itempos, onDelete, educationInfo, onChange, onDele
             id={id}
             onChange={(e) => {
               setCurrentlyStudying(e.target.checked);
-              onchange(e);
+              onChange(e);
             }}
             checked={educationInfo?.user_education_status}
           />

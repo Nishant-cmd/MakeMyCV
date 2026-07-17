@@ -6,12 +6,13 @@ import Link from '../../assets/link.svg';
 import Phone from '../../assets/phone.svg';
 import { format } from '../../../node_modules/date-fns';
 
-export default function Render({ personalInfo, workInfo }) {
+export default function Render({ personalInfo, workInfo, educationInfo }) {
   return (
     <section style={{ width: '100%', padding: '1.5rem' }}>
       <main className="cv-page">
         <Personal_Information_Display personalInfo={personalInfo} />
         <Work_Experience_Display workInfo={workInfo} />
+        <Education_Display educationInfo={educationInfo} />
       </main>
     </section>
   );
@@ -133,6 +134,56 @@ function Work_Experience_Display({ workInfo }) {
         </>
       )}
       {experience}
+    </div>
+  );
+}
+
+function Education_Display({ educationInfo }) {
+  const education = educationInfo.map((education) => {
+    const start_date = education.user_education_start
+      ? format(education.user_education_start, 'MMMM yyyy')
+      : '';
+
+    const end_date = education.user_education_status
+      ? 'Present'
+      : education.user_education_end
+        ? format(education.user_education_end, 'MMMM yyyy')
+        : '';
+
+    return (
+      <div key={education.user_id} style={{ marginBottom: '2rem' }}>
+        <ul
+          style={{
+            padding: '0px',
+            display: 'flex',
+            justifyContent: 'space-between',
+            fontSize: '0.8rem',
+            fontWeight: '600',
+          }}
+        >
+          <li>{education.user_degree || 'Degree'}</li>
+          {education?.user_education_start && (
+            <span>
+              {start_date} - {end_date}
+            </span>
+          )}
+        </ul>
+        <p style={{ marginTop: '0.5rem', color: '#525252', fontSize: '0.8rem', lineHeight: '1.8' }}>
+          {education?.user_college || 'College'}
+        </p>
+      </div>
+    );
+  });
+
+  return (
+    <div style={{ padding: '1.5rem 2rem 0rem 2rem' }}>
+      {educationInfo[0]?.user_id && (
+        <>
+          <h4>Education</h4>
+          <hr />
+        </>
+      )}
+      {education}
     </div>
   );
 }
