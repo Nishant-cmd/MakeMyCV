@@ -97,6 +97,8 @@ p {
     flex-direction: column;
     gap: 1rem;
     border: none;
+    min-width: 0;
+    padding: 0;
 }
 
 .experience-info,
@@ -125,6 +127,10 @@ p {
     flex-direction: row;
 }
 
+#person-information-form {
+    padding: 1.5rem;
+}
+
 #experience-details,
 #education-details,
 #project-details {
@@ -146,6 +152,7 @@ p {
     display: flex;
     flex-direction: column;
     gap: 0.4rem;
+    min-width: 0;
 }
 
 .header {
@@ -172,6 +179,7 @@ p {
     display: flex;
     gap: 1rem;
     margin-top: 0.5rem;
+    flex-wrap: wrap;
 }
 
 #skills-div>div>div {
@@ -254,6 +262,7 @@ textarea {
     background: rgb(255, 255, 255);
     border-radius: 6px;
     padding: 0.75rem;
+    min-width: 0;
 }
 
 input:focus,

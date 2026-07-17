@@ -1,5 +1,8 @@
 .cv-page {
-    min-height: 100%;
+    min-height: 25cm;
+    max-width: 20cm;
+    width: 100%;
+    margin: 0 auto;
     background: #fff;
     box-shadow: 0 10px 40px #00000026;
     padding: 0px;

@@ -217,7 +217,7 @@ function Skill_Display({ skillInfo }) {
         </>
       )}
 
-      <div style={{ display: 'flex', gap: '.5rem' }}>{skillList}</div>
+      <div style={{ display: 'flex', gap: '.5rem', flexWrap: 'wrap' }}>{skillList}</div>
     </div>
   );
 }
@@ -272,7 +272,7 @@ function Project_Display({ projectInfo }) {
     </div>
   ));
   return (
-    <div style={{ padding: '0.5rem 2rem 0rem 2rem' }}>
+    <div style={{ padding: '0.5rem 2rem 0rem 2rem', marginTop: '1.5rem' }}>
       {projectInfo[0]?.project_id && (
         <>
           <h4>Projects</h4>

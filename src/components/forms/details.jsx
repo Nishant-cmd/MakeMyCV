@@ -19,7 +19,7 @@ export default function Details({
   onDeleteProject,
 }) {
   return (
-    <main style={{ display: 'flex', flexDirection: 'column', gap: '1rem', minWidth: '40%' }}>
+    <main style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
       <p>Start filling up your information !</p>
       <Personal_Information onChange={onChangePersonalInfo} personalInfo={personalInfo} />
       <Work_Experience

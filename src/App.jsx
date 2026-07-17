@@ -159,37 +159,36 @@ function App() {
   };
 
   return (
-    <>
+    <div className="app-shell">
       <Header />
-      <div
-        style={{
-          display: 'flex',
-          backgroundColor: ' #fafaf9',
-        }}
-      >
-        <Details
-          onChangePersonalInfo={handlePersonalInfoChange}
-          personalInfo={personalInfo}
-          onChangeWorkInfo={handleWorkInfoChange}
-          workInfo={workInfo}
-          onDeleteExperience={deleteWorkExperience}
-          educationInfo={educationInfo}
-          onDeleteEducation={deleteEductionInfo}
-          onChangeEducationInfo={handleEducationInfoChange}
-          onSkillChange={handleSkill}
-          projectInfo={projectInfo}
-          onProjectChange={handleProjectInfoChange}
-          onDeleteProject={deleteProjectInfo}
-        />
-        <Render
-          personalInfo={personalInfo}
-          workInfo={workInfo}
-          educationInfo={educationInfo}
-          skillInfo={skillInfo}
-          projectInfo={projectInfo}
-        />
+      <div className="app-content">
+        <div className="panel-forms">
+          <Details
+            onChangePersonalInfo={handlePersonalInfoChange}
+            personalInfo={personalInfo}
+            onChangeWorkInfo={handleWorkInfoChange}
+            workInfo={workInfo}
+            onDeleteExperience={deleteWorkExperience}
+            educationInfo={educationInfo}
+            onDeleteEducation={deleteEductionInfo}
+            onChangeEducationInfo={handleEducationInfoChange}
+            onSkillChange={handleSkill}
+            projectInfo={projectInfo}
+            onProjectChange={handleProjectInfoChange}
+            onDeleteProject={deleteProjectInfo}
+          />
+        </div>
+        <div className="panel-preview">
+          <Render
+            personalInfo={personalInfo}
+            workInfo={workInfo}
+            educationInfo={educationInfo}
+            skillInfo={skillInfo}
+            projectInfo={projectInfo}
+          />
+        </div>
       </div>
-    </>
+    </div>
   );
 }
 
