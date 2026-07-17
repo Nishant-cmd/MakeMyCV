@@ -18,6 +18,7 @@ function App() {
   const [workInfo, setWorkInfo] = useState([]);
   const [educationInfo, setEducationInfo] = useState([]);
   const [skillInfo, setSkill] = useState([]);
+  const [projectInfo, setProjectInfo] = useState([]);
 
   const work_experience = {
     user_id: '',
@@ -38,6 +39,14 @@ function App() {
     user_education_status: false,
   };
 
+  const project_details = {
+    project_id: '',
+    project_name: '',
+    project_description: '',
+    project_technologies: '',
+    project_link: '',
+  };
+
   const handlePersonalInfoChange = (e) => {
     const { name, value } = e.target;
     setPersonalInfo((prevInfo) => ({
@@ -52,8 +61,13 @@ function App() {
   };
 
   const deleteEductionInfo = (id) => {
-    const remaininEducationInfo = educationInfo.filter((education) => education.user_id !== id);
-    setEducationInfo(remaininEducationInfo);
+    const remainingEducation = educationInfo.filter((education) => education.user_id !== id);
+    setEducationInfo(remainingEducation);
+  };
+
+  const deleteProjectInfo = (id) => {
+    const remainingProject = projectInfo.filter((project) => project.project_id !== id);
+    setProjectInfo(remainingProject);
   };
 
   const handleWorkInfoChange = (e) => {
@@ -116,6 +130,34 @@ function App() {
     setSkill(skill);
   };
 
+  const handleProjectInfoChange = (e) => {
+    const { id: projectId, name, value } = e.target;
+
+    const projectExists = projectInfo.some((project) => project.project_id === projectId);
+
+    if (projectExists) {
+      setProjectInfo((prevProjectInfo) =>
+        prevProjectInfo.map((project) =>
+          project.project_id === projectId
+            ? {
+                ...project,
+                [name]: value,
+              }
+            : project,
+        ),
+      );
+    } else {
+      setProjectInfo((prevProjectInfo) => [
+        ...prevProjectInfo,
+        {
+          ...project_details,
+          project_id: projectId,
+          [name]: value,
+        },
+      ]);
+    }
+  };
+
   return (
     <>
       <Header />
@@ -135,12 +177,16 @@ function App() {
           onDeleteEducation={deleteEductionInfo}
           onChangeEducationInfo={handleEducationInfoChange}
           onSkillChange={handleSkill}
+          projectInfo={projectInfo}
+          onProjectChange={handleProjectInfoChange}
+          onDeleteProject={deleteProjectInfo}
         />
         <Render
           personalInfo={personalInfo}
           workInfo={workInfo}
           educationInfo={educationInfo}
           skillInfo={skillInfo}
+          projectInfo={projectInfo}
         />
       </div>
     </>

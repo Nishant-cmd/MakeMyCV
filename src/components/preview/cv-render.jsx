@@ -6,7 +6,7 @@ import Link from '../../assets/link.svg';
 import Phone from '../../assets/phone.svg';
 import { format } from '../../../node_modules/date-fns';
 
-export default function Render({ personalInfo, workInfo, educationInfo, skillInfo }) {
+export default function Render({ personalInfo, workInfo, educationInfo, skillInfo, projectInfo }) {
   return (
     <section style={{ width: '100%', padding: '1.5rem' }}>
       <main className="cv-page">
@@ -14,6 +14,7 @@ export default function Render({ personalInfo, workInfo, educationInfo, skillInf
         <Work_Experience_Display workInfo={workInfo} />
         <Education_Display educationInfo={educationInfo} />
         <Skill_Display skillInfo={skillInfo} />
+        <Project_Display projectInfo={projectInfo} />
       </main>
     </section>
   );
@@ -87,7 +88,6 @@ function Personal_Information_Display({ personalInfo }) {
 
 function Work_Experience_Display({ workInfo }) {
   const experience = workInfo.map((workExperience) => {
-    console.log(workExperience.user_work_status);
     const start_date = workExperience.user_job_start
       ? format(workExperience.user_job_start, 'MMMM yyyy')
       : '';
@@ -119,7 +119,9 @@ function Work_Experience_Display({ workInfo }) {
         <p style={{ marginTop: '0.5rem', color: '#525252', fontSize: '0.8rem', lineHeight: '1.8' }}>
           {workExperience?.user_company || 'Company'}
         </p>
-        <p style={{ color: '#525252', fontSize: '0.8rem', lineHeight: '1.8' }}>
+        <p
+          style={{ marginTop: '-0.5rem', color: '#525252', fontSize: '0.7rem', lineHeight: '1.8' }}
+        >
           {workExperience?.experience_summary}
         </p>
       </div>
@@ -216,6 +218,76 @@ function Skill_Display({ skillInfo }) {
       )}
 
       <div style={{ display: 'flex', gap: '.5rem' }}>{skillList}</div>
+    </div>
+  );
+}
+
+function Project_Display({ projectInfo }) {
+  const projectList = projectInfo.map((project) => (
+    <div
+      key={project.project_id}
+      style={{
+        width: '100%',
+        background: ' var(--warm-white)',
+        borderLeft: ' 3px solid var(--accent-sage)',
+        borderRadius: '8px',
+        padding: '1rem',
+        marginBottom: '1.75rem',
+      }}
+    >
+      <p
+        style={{
+          color: 'var(--ink-black)',
+          margin: '0 0 0.5rem',
+          fontSize: '1rem',
+          fontWeight: '600',
+          fontFamily: 'Crimson Pro , serif',
+        }}
+      >
+        {project?.project_name}
+      </p>
+      <p
+        style={{
+          color: 'var(--text-secondary)',
+          margin: '0 0 .75rem',
+          fontSize: '.8rem',
+          lineHeight: ' 1.7',
+        }}
+      >
+        {project?.project_description}
+      </p>
+      {project?.project_technologies && (
+        <p style={{ fontStyle: 'italic', fontSize: '.7rem', color: 'var(--text-muted)' }}>
+          Technologies:{project?.project_technologies}
+        </p>
+      )}
+      <a
+        href={project?.project_link}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{ fontSize: '.7rem', color: 'var(--text-secondary)' }}
+      >
+        View Project
+      </a>
+    </div>
+  ));
+  return (
+    <div style={{ padding: '0.5rem 2rem 0rem 2rem' }}>
+      {projectInfo[0]?.project_id && (
+        <>
+          <h4>Projects</h4>
+          <hr />
+        </>
+      )}
+
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+        }}
+      >
+        {projectList}
+      </div>
     </div>
   );
 }

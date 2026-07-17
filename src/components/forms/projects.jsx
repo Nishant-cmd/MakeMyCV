@@ -2,7 +2,7 @@ import { useState } from 'react';
 import ProjectLogo from '../../assets/project.svg';
 import Deletebtn from '../../assets/delete-btn.svg';
 
-export default function Project() {
+export default function Project({ onChange, projectInfo, onDelete }) {
   const [isVisible, setIsVisible] = useState(false);
   const [items, addItems] = useState([{ id: crypto.randomUUID() }]);
 
@@ -13,7 +13,6 @@ export default function Project() {
 
   const handleItem = () => {
     const newItem = [...items, { id: crypto.randomUUID() }];
-    console.log(newItem);
     addItems(newItem);
   };
 
@@ -49,7 +48,9 @@ export default function Project() {
             id={item.id}
             itempos={index}
             onDelete={deleteItem}
-            showDeleteBtn={index === 0 ? false : true}
+            projectInfo={projectInfo}
+            onChange={onChange}
+            onDeleteProject={onDelete}
           />
         ))}
         <button
@@ -66,50 +67,72 @@ export default function Project() {
   );
 }
 
-function Project_List({ id, itempos, onDelete, showDeleteBtn }) {
+function Project_List({ id, itempos, onDelete, projectInfo, onChange, onDeleteProject }) {
   return (
     <form className="project-info">
       <fieldset className="project-info-fieldset">
         <div className="header">
           <legend>{'Project ' + '#' + (itempos + 1)}</legend>
-          {showDeleteBtn ? (
-            <button
-              type="button"
-              className="remove-btn"
-              onClick={() => {
-                onDelete(id);
-              }}
-            >
-              <img src={Deletebtn} alt="delete-btn" />
-              <span>remove</span>
-            </button>
-          ) : (
-            <span></span>
-          )}
+          <button
+            type="button"
+            className="remove-btn"
+            onClick={() => {
+              onDelete(id);
+              onDeleteProject(id);
+            }}
+          >
+            <img src={Deletebtn} alt="delete-btn" />
+            <span>remove</span>
+          </button>
         </div>
         <div id="project-details">
           <div>
             <label htmlFor="project-name">Project Name</label>
-            <input id="project-name" type="text" placeholder="E-commerce Website" required />
+            <input
+              name="project_name"
+              id={id}
+              type="text"
+              placeholder="E-commerce Website"
+              required
+              value={projectInfo?.project_name}
+              onChange={onChange}
+            />
           </div>
 
           <div className="project-description">
             <label htmlFor="project-description">Description</label>
             <textarea
-              id="project-description"
+              name="project_description"
+              id={id}
               rows="5"
               placeholder="Describe what the project does, your contributions, and key features..."
+              value={projectInfo?.project_description}
+              onChange={onChange}
             ></textarea>
           </div>
 
           <div>
             <label htmlFor="technologies">Technologies Used</label>
-            <input id="technologies" type="text" placeholder="React, Node.js, MongoDB" />
+            <input
+              name="project_technologies"
+              id={id}
+              type="text"
+              placeholder="React, Node.js, MongoDB"
+              value={projectInfo?.project_technologies}
+              onChange={onChange}
+            />
           </div>
 
           <div>
             <label htmlFor="project-link">Project Link</label>
-            <input id="project-link" type="url" placeholder="https://github.com/username/project" />
+            <input
+              name="project_link"
+              id={id}
+              type="url"
+              placeholder="https://github.com/username/project"
+              value={projectInfo?.project_link}
+              onChange={onChange}
+            />
           </div>
         </div>
       </fieldset>

@@ -14,6 +14,9 @@ export default function Details({
   onDeleteEducation,
   onChangeEducationInfo,
   onSkillChange,
+  projectInfo,
+  onProjectChange,
+  onDeleteProject,
 }) {
   return (
     <main style={{ display: 'flex', flexDirection: 'column', gap: '1rem', minWidth: '40%' }}>
@@ -30,7 +33,7 @@ export default function Details({
         onDelete={onDeleteEducation}
       />
       <Skill onChange={onSkillChange} />
-      <Project />
+      <Project onChange={onProjectChange} projectInfo={projectInfo} onDelete={onDeleteProject} />
     </main>
   );
 }
