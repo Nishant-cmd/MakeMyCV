@@ -16,7 +16,7 @@ function App() {
   });
 
   const [workInfo, setWorkInfo] = useState([]);
-  const [educationInfo, setEducationInfo] = usesState([]);
+  const [educationInfo, setEducationInfo] = useState([]);
 
   const work_experience = {
     user_id: '',
